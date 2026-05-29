@@ -1,0 +1,33 @@
+.chart-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.chart-card h2 {
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #0f172a;
+}
+
+.chart-placeholder,
+.heatmap-placeholder {
+  width: 100%;
+  height: 280px;
+  background: linear-gradient(
+    135deg,
+    #ede9fe,
+    #ddd6fe
+  );
+
+  border-radius: 12px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #5b21b6;
+  font-size: 18px;
+  font-weight: bold;
+}
