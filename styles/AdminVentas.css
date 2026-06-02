@@ -1,0 +1,274 @@
+/* ============================================================================
+   ESTILOS DE PANEL DE VENTAS
+   Todos los estilos con clases CSS en español
+   ============================================================================ */
+
+/* Contenedor principal del panel de ventas */
+.panel_ventas {
+  padding: 20px;
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+}
+
+
+
+.encabezado_contenido_ventas p {
+  color: #7f8c8d;
+  margin: 5px 0 0 0;
+}
+
+/* ============================================================================
+   RESUMEN DE ACTIVIDAD / CARDS DE ESTADÍSTICAS
+   ============================================================================ */
+
+.contenedor_resumen_ventas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 18px;
+  width: 100%;
+}
+
+.tarjeta_estadistica_ventas {
+  background: #fff;
+  padding: 14px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.tarjeta_etiqueta_ventas {
+  color: #64748b;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.tarjeta_numero_ventas {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+
+
+/* ============================================================================
+   CONTENEDOR PRINCIPAL DE SECCIONES
+   ============================================================================ */
+
+.contenedor_secciones_ventas {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ============================================================================
+   TABLA PRINCIPAL DE VENTAS
+   ============================================================================ */
+
+.tarjeta_tabla_ventas {
+  padding: 25px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  min-height: 450px;
+}
+
+.encabezado_tabla_ventas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.titulo_tabla_ventas {
+  font-size: 18px;
+  margin: 0;
+  color: #2c3e50;
+}
+
+/* ============================================================================
+   BARRA DE FILTROS VENTAS
+   ============================================================================ */
+
+.barra_filtros_ventas {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.entrada_texto_filtro_ventas {
+  min-width: 160px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+.entrada_fecha_filtro_ventas {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 13px;
+}
+
+.boton_limpiar_filtros_ventas {
+  padding: 8px 14px;
+  cursor: pointer;
+  background-color: #1e90ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 13px;
+  transition: background-color 0.3s ease;
+}
+
+.boton_limpiar_filtros_ventas:hover {
+  background-color: #1c7dd6;
+}
+
+/* ============================================================================
+   TABLA ESTILOS VENTAS
+   ============================================================================ */
+
+.tabla_ventas {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla_ventas thead tr {
+  border-bottom: 2px solid #f1f2f6;
+  color: #747d8c;
+}
+
+.tabla_encabezado_ventas {
+  padding: 10px 6px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.tabla_encabezado_id_ventas {
+  width: 60px;
+}
+
+.tabla_encabezado_detalle_ventas {
+  min-width: 190px;
+}
+
+.tabla_encabezado_cantidad_ventas {
+  width: 90px;
+}
+
+.tabla_encabezado_fecha_ventas {
+  min-width: 140px;
+}
+
+.tabla_encabezado_estado_ventas {
+  width: 140px;
+}
+
+.tabla_encabezado_ingreso_ventas {
+  width: 100px;
+}
+
+.tabla_fila_ventas {
+  border-bottom: 1px solid #f1f2f6;
+}
+
+.tabla_celda_ventas {
+  padding: 10px 6px;
+  font-size: 13px;
+  text-align: center;
+  color: #2f3542;
+}
+
+.tabla_celda_id_ventas {
+  font-weight: bold;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.tabla_celda_detalle_ventas {
+  white-space: normal;
+  word-break: break-word;
+}
+
+.tabla_celda_cantidad_ventas {
+  font-weight: 600;
+}
+
+.tabla_celda_fecha_ventas {
+  min-width: 140px;
+}
+
+.tabla_celda_estado_ventas {
+  text-align: center;
+}
+
+.estado_entregado_ventas {
+  color: #27ae60;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.tabla_celda_ingreso_ventas {
+  font-weight: 600;
+  color: #00008b;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* Teléfono columna */
+.tabla_encabezado_ventas.tabla_encabezado_telefono_ventas,
+.tabla_celda_ventas.tabla_celda_telefono_ventas {
+  min-width: 140px;
+  text-align: center;
+}
+
+.texto_cargando_ventas {
+  text-align: center;
+  color: #747d8c;
+  padding: 20px;
+}
+
+.texto_no_encontrado_ventas {
+  color: #aaa;
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .tarjeta_tabla_ventas {
+    padding: 15px;
+  }
+
+  .tabla_encabezado_ventas {
+    font-size: 12px;
+    padding: 8px 4px;
+  }
+
+  .tabla_celda_ventas {
+    padding: 8px 4px;
+    font-size: 11px;
+  }
+
+  .barra_filtros_ventas {
+    gap: 6px;
+  }
+
+  .entrada_texto_filtro_ventas,
+  .entrada_fecha_filtro_ventas,
+  .boton_limpiar_filtros_ventas {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+}

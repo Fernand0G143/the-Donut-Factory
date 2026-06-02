@@ -1,0 +1,124 @@
+.table-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.table-card h2 {
+  margin-bottom: 18px;
+  color: #0f172a;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table thead {
+  background: #f1f5f9;
+}
+
+table th {
+  text-align: left;
+  padding: 14px;
+  color: #334155;
+  font-size: 14px;
+}
+
+table td {
+  padding: 14px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #475569;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+.tabla_clientes {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla_clientes thead {
+  background: #f1f5f9;
+}
+
+.tabla_clientes th,
+.tabla_clientes td {
+  padding: 10px 6px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.tabla_clientes th {
+  color: #334155;
+  font-size: 14px;
+}
+
+.tabla_clientes td {
+  color: #2f3542;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tabla_clientes tbody tr:hover {
+  background: #f8fafc;
+}
+
+.table-card ul {
+  padding-left: 20px;
+}
+
+.table-card li {
+  margin-bottom: 10px;
+  color: #475569;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-bar input {
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+}
+
+.filter-bar button {
+  padding: 10px 18px;
+  border: none;
+  background: #7c3aed;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.filter-bar button:hover {
+  background: #6d28d9;
+}
+
+.primary-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #7c3aed;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.primary-btn:hover {
+  background: #6d28d9;
+}
+
+select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: white;
+}

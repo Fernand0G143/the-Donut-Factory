@@ -1,0 +1,32 @@
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #1e293b;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 30px;
+}
+
+/* dashboard container relative for floating controls */
+.dashboard-container {
+  position: relative;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 14px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.sidebar li:hover {
+  background: rgba(255,255,255,0.1);
+}
+

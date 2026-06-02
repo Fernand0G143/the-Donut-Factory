@@ -1,0 +1,358 @@
+/* Modos oscuros globales aplicados cuando el root tiene la clase .modo_oscuro */
+.modo_oscuro {
+  --bg: #0b1220;
+  --card: #0f1724;
+  --muted: #9aa4b2;
+  --text: #e6eef8;
+  --accent: #4e8cff;
+}
+
+.modo_oscuro body,
+.modo_oscuro .panel_principal,
+.modo_oscuro .panel_ventas {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+.modo_oscuro .tarjeta_estadistica,
+.modo_oscuro .tarjeta_tabla,
+.modo_oscuro .tarjeta_tabla_ventas,
+.modo_oscuro .tarjeta_modal {
+  background: var(--card) !important;
+  color: var(--text) !important;
+  box-shadow: none !important;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+.modo_oscuro .tarjeta_etiqueta,
+.modo_oscuro .tarjeta_etiqueta_ventas {
+  color: var(--muted) !important;
+}
+
+.modo_oscuro .tarjeta_numero,
+.modo_oscuro .tarjeta_numero_ventas {
+  color: var(--text) !important;
+}
+
+.modo_oscuro .tarjeta_numero_grande_azul {
+  color: var(--accent) !important;
+}
+
+.modo_oscuro .tarjeta_modal,
+.modo_oscuro .modal_produccion {
+  background: var(--card) !important;
+  color: var(--text) !important;
+}
+
+.modo_oscuro .titulo_modal,
+.modo_oscuro .etiqueta_formulario,
+.modo_oscuro .checkbox_label,
+.modo_oscuro .titulo_seleccion,
+.modo_oscuro .descripcion_caja,
+.modo_oscuro .etiqueta_total,
+.modo_oscuro .valor_total,
+.modo_oscuro .mensaje_sin_items,
+.modo_oscuro .info_disponibilidad,
+.modo_oscuro .encabezado_panel,
+.modo_oscuro .encabezado_contenido h1,
+.modo_oscuro .encabezado_contenido p,
+.modo_oscuro .entrada_fecha_filtro,
+.modo_oscuro .tabla_encabezado_fecha {
+  color: var(--text) !important;
+}
+
+.modo_oscuro .encabezado_panel {
+  background: var(--card) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+.modo_oscuro .entrada_fecha_filtro {
+  background: rgba(255,255,255,0.05) !important;
+  border-color: rgba(255,255,255,0.14) !important;
+}
+
+.modo_oscuro .entrada_formulario,
+.modo_oscuro .selector_sabor,
+.modo_oscuro .entrada_cantidad,
+.modo_oscuro .selector_caja_especial,
+.modo_oscuro .entrada_caja_numero {
+  background: rgba(255,255,255,0.05) !important;
+  color: var(--text) !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+}
+
+.modo_oscuro .selector_caja_especial:disabled,
+.modo_oscuro .entrada_caja_numero:disabled {
+  background: rgba(255,255,255,0.02) !important;
+}
+
+.modo_oscuro .checkbox_label_disabled {
+  color: rgba(255,255,255,0.65) !important;
+}
+
+.modo_oscuro .contenedor_seleccion_productos,
+.modo_oscuro .contenedor_cajas_especiales,
+.modo_oscuro .contenedor_tabla_items,
+.modo_oscuro .contenedor_resumen_modal {
+  background: var(--card) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+.modo_oscuro .tabla_items {
+  background: var(--card) !important;
+}
+
+.modo_oscuro .tabla_items thead {
+  background: #15203b !important;
+  color: var(--text) !important;
+}
+
+.modo_oscuro .tabla_items td,
+.modo_oscuro .tabla_items th {
+  color: var(--text) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+.modo_oscuro .selector_estado,
+.modo_oscuro .selector_estado_filtro,
+.modo_oscuro select {
+  background: rgba(255,255,255,0.08) !important;
+  color: var(--text) !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  appearance: none !important;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+}
+
+.modo_oscuro .selector_estado:focus,
+.modo_oscuro .selector_estado_filtro:focus,
+.modo_oscuro select:focus {
+  outline: 2px solid rgba(78,140,255,0.35) !important;
+  outline-offset: 2px !important;
+}
+
+.modo_oscuro .selector_estado option,
+.modo_oscuro .selector_estado_filtro option,
+.modo_oscuro select option {
+  background: #0f1724 !important;
+  color: var(--text) !important;
+}
+
+.modo_oscuro .selector_estado option:hover,
+.modo_oscuro .selector_estado_filtro option:hover,
+.modo_oscuro select option:hover {
+  background: rgba(255,255,255,0.06) !important;
+}
+
+.modo_oscuro .selector_estado::-ms-expand,
+.modo_oscuro .selector_estado_filtro::-ms-expand,
+.modo_oscuro select::-ms-expand {
+  filter: invert(0.7);
+}
+
+.modo_oscuro .texto_estado_entregado {
+  color: #34d399 !important;
+}
+
+.modo_oscuro .texto_estado_en_produccion {
+  color: #fbbf24 !important;
+}
+
+.modo_oscuro .texto_estado_pendiente {
+  color: #f59e0b !important;
+}
+
+.modo_oscuro .texto_fecha {
+  color: #ffffff !important;
+}
+
+.modo_oscuro .texto_estado_cancelado {
+  color: #f87171 !important;
+}
+
+.modo_oscuro .entrada_texto_filtro,
+.modo_oscuro .entrada_fecha_filtro {
+  background: rgba(255,255,255,0.05) !important;
+  color: var(--text) !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+}
+
+.modo_oscuro .stats-card,
+.modo_oscuro .table-card,
+.modo_oscuro .filter-bar,
+.modo_oscuro .filter-bar input,
+.modo_oscuro .filter-bar select,
+.modo_oscuro .filter-bar button,
+.modo_oscuro .stats-card h3,
+.modo_oscuro .stats-card h2,
+.modo_oscuro .table-card h2,
+.modo_oscuro .table-card ul li {
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+.modo_oscuro .stats-card {
+  box-shadow: none !important;
+  border-left-color: #4e8cff !important;
+}
+
+.modo_oscuro .table-card {
+  box-shadow: none !important;
+}
+
+.modo_oscuro .titulo_tabla,
+.modo_oscuro .table-card h2 {
+  color: var(--text) !important;
+}
+
+.modo_oscuro .tabla_clientes thead {
+  background: #15203b !important;
+}
+
+.modo_oscuro .tabla_clientes th,
+.modo_oscuro .tabla_clientes td {
+  color: var(--text) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+.modo_oscuro .tabla_clientes tbody tr {
+  background: var(--card) !important;
+}
+
+.modo_oscuro .tabla_clientes tbody tr:hover {
+  background: rgba(255,255,255,0.04) !important;
+}
+
+.modo_oscuro table,
+.modo_oscuro .tabla_ventas,
+.modo_oscuro .tabla_pedidos,
+.modo_oscuro .tabla,
+.modo_oscuro .tabla_principal {
+  background: var(--card) !important;
+  color: var(--text) !important;
+}
+
+/* For table rows / cells that previously had white background, force the card color */
+.modo_oscuro .tabla_ventas tbody tr,
+.modo_oscuro .tabla_pedidos tbody tr,
+.modo_oscuro table tbody tr,
+.modo_oscuro .tabla tbody tr,
+.modo_oscuro .tabla_principal tbody tr,
+.modo_oscuro .production-table tbody tr {
+  background: var(--card) !important;
+}
+
+.modo_oscuro .tabla_ventas thead tr,
+.modo_oscuro table thead,
+.modo_oscuro .tabla thead,
+.modo_oscuro .tabla_principal thead,
+.modo_oscuro .production-table thead {
+  background: #15203b !important;
+}
+
+.modo_oscuro .production-card,
+.modo_oscuro .production-header,
+.modo_oscuro .production-table,
+.modo_oscuro .production-table th,
+.modo_oscuro .production-table td {
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+.modo_oscuro .production-header h1,
+.modo_oscuro .production-subtitle {
+  color: var(--text) !important;
+}
+
+.modo_oscuro .production-table thead {
+  background: #15203b !important;
+}
+
+.modo_oscuro .production-table th {
+  color: var(--text) !important;
+}
+
+.modo_oscuro .panel_ventas,
+.modo_oscuro .encabezado_ventas,
+.modo_oscuro .contenedor_resumen_ventas,
+.modo_oscuro .tarjeta_estadistica_ventas,
+.modo_oscuro .tarjeta_tabla_ventas,
+.modo_oscuro .encabezado_tabla_ventas {
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+  box-shadow: none !important;
+}
+
+.modo_oscuro .encabezado_ventas {
+  border: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+.modo_oscuro .tarjeta_estadistica_ventas {
+  box-shadow: none !important;
+}
+
+.modo_oscuro .tarjeta_etiqueta_ventas,
+.modo_oscuro .tarjeta_numero_ventas,
+.modo_oscuro .titulo_tabla_ventas,
+.modo_oscuro .encabezado_contenido_ventas h1,
+.modo_oscuro .encabezado_contenido_ventas p,
+.modo_oscuro .texto_cargando_ventas,
+.modo_oscuro .texto_no_encontrado_ventas {
+  color: var(--text) !important;
+}
+
+.modo_oscuro .tabla_ventas thead tr {
+  background: #15203b !important;
+}
+
+.modo_oscuro .tabla_ventas th,
+.modo_oscuro .tabla_ventas td,
+.modo_oscuro .tabla_celda_ventas,
+.modo_oscuro .tabla_fila_ventas {
+  color: var(--text) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+.modo_oscuro .tabla_ventas tbody tr {
+  background: var(--card) !important;
+}
+
+.modo_oscuro .entrada_texto_filtro_ventas,
+.modo_oscuro .entrada_fecha_filtro_ventas {
+  background: rgba(255,255,255,0.05) !important;
+  color: var(--text) !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+}
+
+.modo_oscuro .boton_limpiar_filtros_ventas {
+  background: #2b6ef6 !important;
+  color: #fff !important;
+}
+
+.modo_oscuro .tabla_celda_ventas,
+.modo_oscuro .tabla_celda {
+  color: var(--text) !important;
+  border-color: rgba(255,255,255,0.03) !important;
+}
+
+.modo_oscuro .tabla_celda_ventas,
+.modo_oscuro .tabla_celda {
+  color: var(--text) !important;
+  border-color: rgba(255,255,255,0.03) !important;
+}
+
+/* Asegurar contraste en badges y botones */
+.modo_oscuro .boton_crear_pedido,
+.modo_oscuro .boton_agregar_sabor,
+.modo_oscuro .boton_confirmar {
+  background-color: #2b6ef6 !important;
+  color: #fff !important;
+}
+
+.modo_oscuro .boton_cancelar_modal {
+  background: transparent !important;
+  border-color: rgba(255,255,255,0.06) !important;
+  color: var(--text) !important;
+}

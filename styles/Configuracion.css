@@ -1,0 +1,141 @@
+/* Estilos para la página de configuración */
+.pagina_configuracion {
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.titulo_configuracion {
+  font-size: 24px;
+  margin: 0 0 20px 0;
+  color: #2c3e50;
+}
+
+.configuracion_header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(226,232,240,0.8);
+  box-shadow: 0 18px 45px rgba(15,23,42,0.08);
+}
+
+.modo_oscuro .configuracion_header {
+  background: #0f1724;
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: none;
+}
+
+.grupo_configuracion {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #fff;
+  padding: 14px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.etiqueta_configuracion {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Simple switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.switch input { display:none; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 28px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+.switch input:checked + .slider {
+  background-color: #4e8cff;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+/* Darkmode adjustments for the settings card */
+.modo_oscuro .grupo_configuracion {
+  background: #0f1724;
+  color: #e6eef8;
+}
+
+.card_configuracion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(226,232,240,0.7);
+  box-shadow: 0 2px 10px rgba(15,23,42,0.08);
+  flex-shrink: 0;
+  max-width: 280px;
+}
+
+.modo_oscuro .card_configuracion {
+  background: #0f1724;
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: none;
+}
+
+.switch_text {
+  color: #0b3d91;
+  font-size: 22px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.modo_oscuro .switch_text {
+  color: #ffffff !important;
+}
+
+.modo_oscuro .titulo_configuracion {
+  color: var(--text) !important;
+}
+
+.switch_text.activo {
+  color: #ffffff;
+}
+
+@media (max-width: 800px) {
+  .card_configuracion {
+    position: static;
+    margin-bottom: 12px;
+    width: 100%;
+  }
+}

@@ -1,0 +1,79 @@
+.card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.stats-card {
+  background: #fff;
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  border-left: 5px solid #7c3aed;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stats-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Generic grid for stats sections (used in Clientes and other panels) */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.card h3,
+.card h2 {
+  margin: 0;
+}
+
+.stats-card h3 {
+  margin: 0;
+  font-size: 15px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.stats-card h2 {
+  margin-top: 10px;
+  font-size: 30px;
+  color: #0f172a;
+  font-weight: 500;
+}
+
+/* Total cards use the same blue style for both pedidos and ingresos */
+.tarjeta_total,
+.tarjeta_total h2,
+.tarjeta_numero.tarjeta_total {
+  color: #0b3d91;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.encabezado_panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  font-weight: 600;
+}
+
+.encabezado_contenido h1 {
+  font-size: 30px;
+  margin: 0;
+  color: #2c3e50;
+}
+
