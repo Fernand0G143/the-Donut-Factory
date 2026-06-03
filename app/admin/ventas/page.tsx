@@ -115,7 +115,7 @@ export default function VentasPage() {
       <div className="contenedor_secciones_ventas">
         <TableCard className="tarjeta_tabla_ventas">
           <div className="table-card-header">
-            <h2>Detalle de Ventas</h2>
+            <h2 className="titulo_tabla">Detalle de Ventas</h2>
             <div className="barra_filtros_ventas">
               <input
                 type="text"

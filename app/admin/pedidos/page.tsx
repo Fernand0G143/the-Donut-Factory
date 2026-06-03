@@ -445,7 +445,7 @@ export default function PedidosPage() {
       <div className="contenedor_secciones">
         <section className="tarjeta_tabla">
           <div className="encabezado_tabla">
-            <h2 className="titulo_tabla">Listado General de Pedidos Activos</h2>
+            <h2 className="titulo_tabla">Listado General de Pedidos</h2>
 
             <div className="barra_filtros">
               <input
@@ -488,7 +488,7 @@ export default function PedidosPage() {
                 className="boton_borrar_todo"
                 title="Elimina todos los pedidos y reinicia el ID"
               >
-                Borrar Todo
+                Borrar Todo 💥
               </button>
             </div>
           </div>

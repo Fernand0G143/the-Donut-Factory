@@ -94,7 +94,7 @@ export default function CustomersPage() {
       </section>
 
       <section className="table-card">
-        <h2>Listado de Clientes</h2>
+        <h2 className="titulo_tabla">Listado de clientes</h2>
 
         <table className="tabla_clientes">
           <thead>
