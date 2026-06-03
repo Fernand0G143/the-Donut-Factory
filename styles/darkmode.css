@@ -44,6 +44,17 @@
   color: var(--text) !important;
 }
 
+.modo_oscuro .modal_produccion_label,
+.modo_oscuro .modal_produccion h2 {
+  color: var(--text) !important;
+}
+
+.modo_oscuro .modal_produccion_input {
+  background: rgba(255,255,255,0.06) !important;
+  color: var(--text) !important;
+  border-color: rgba(255,255,255,0.15) !important;
+}
+
 .modo_oscuro .titulo_modal,
 .modo_oscuro .etiqueta_formulario,
 .modo_oscuro .checkbox_label,

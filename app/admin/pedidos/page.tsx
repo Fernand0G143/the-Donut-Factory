@@ -403,10 +403,10 @@ export default function PedidosPage() {
     ? "Completar nombre"
     : !isPhoneValid
     ? "El teléfono debe tener 8 dígitos"
-    : !isDeliveryValid
-    ? "Elegir Fecha de entrega superior"
     : !hasItems
-    ? "Agregue al menos un sabor"
+    ? "Agregar Productos"
+    : !(hasSpecialCaja ? isDeliveryValid : immediateDelivery || isDeliveryValid)
+    ? "Elegir Fecha de entrega superior"
     : "";
 
   return (
