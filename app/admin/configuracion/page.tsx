@@ -8,7 +8,7 @@ export default function ConfiguracionPage() {
   const { isDark, setTheme } = useTheme();
 
   function toggleDarkmode(checked: boolean) {
-    setTheme(checked ? "dark" : "light");
+    setTheme(checked ? "dark" : "light", true);
   }
 
   return (

@@ -7,7 +7,7 @@ type ThemeMode = "light" | "dark";
 type ThemeContextValue = {
   theme: ThemeMode;
   isDark: boolean;
-  setTheme: (mode: ThemeMode) => void;
+  setTheme: (mode: ThemeMode, reload?: boolean) => void;
   toggleTheme: () => void;
 };
 
@@ -53,11 +53,15 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     applyTheme(initial);
   }, []);
 
-  const setTheme = (mode: ThemeMode) => {
+  const setTheme = (mode: ThemeMode, reload: boolean = false) => {
+    if (mode === theme) return;
     setThemeState(mode);
     if (typeof window !== "undefined") {
       localStorage.setItem(STORAGE_KEY, mode);
       applyTheme(mode);
+      if (reload) {
+        window.location.reload();
+      }
     }
   };
 
@@ -66,7 +70,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       theme,
       isDark: theme === "dark",
       setTheme,
-      toggleTheme: () => setTheme(theme === "dark" ? "light" : "dark"),
+      toggleTheme: () => setTheme(theme === "dark" ? "light" : "dark", true),
     }),
     [theme],
   );

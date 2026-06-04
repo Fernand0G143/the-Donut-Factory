@@ -218,15 +218,19 @@ export async function DELETE() {
   try {
     await ensureOrdersTable();
     await ensureProductionTable();
+    await ensureCustomersTable();
 
     // Limpiar todos los pedidos
     await pool.query('TRUNCATE TABLE orders RESTART IDENTITY CASCADE;');
+
+    // Limpiar todos los clientes y reiniciar su identidad
+    await pool.query('TRUNCATE TABLE customers RESTART IDENTITY CASCADE;');
 
     // Resetear vendidas a 0 en producción, manteniendo producidas
     await pool.query('UPDATE production SET vendidas = 0;');
 
     return NextResponse.json(
-      { success: true, message: "Todos los pedidos han sido eliminados correctamente y las ventas reiniciadas." },
+      { success: true, message: "Todos los pedidos y clientes han sido eliminados correctamente, y las ventas reiniciadas." },
       { status: 200 }
     );
   } catch (error) {
