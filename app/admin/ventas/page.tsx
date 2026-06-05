@@ -43,12 +43,18 @@ export default function VentasPage() {
     try {
       const res = await fetch("/api/ventas");
       const data = await res.json();
-      setVentas(data);
+      if (!res.ok || !Array.isArray(data)) {
+        console.error("Ventas API returned invalid data:", data);
+        setVentas([]);
+      } else {
+        setVentas(data);
+      }
     } catch (e) {
       console.error(e);
       setVentas([]);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   async function fetchResumen() {

@@ -284,6 +284,7 @@
   font-weight: bold;
   white-space: nowrap;
   font-size: 12px;
+  text-align: center;
 }
 
 .tabla_celda_cliente {
@@ -322,7 +323,7 @@
   width: 90px;
   font-weight: 600;
   color: #00008b;
-  text-align: right;
+  text-align: center;
   font-size: 13px;
 }
 

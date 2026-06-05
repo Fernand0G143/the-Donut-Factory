@@ -191,11 +191,13 @@
   font-weight: bold;
   white-space: nowrap;
   font-size: 12px;
+  text-align: center;
 }
 
 .tabla_celda_detalle_ventas {
   white-space: normal;
   word-break: break-word;
+  text-align: center;
 }
 
 .tabla_celda_cantidad_ventas {

@@ -21,6 +21,7 @@ function isSpecialCaja(sabor: string) {
 export async function GET() {
   const pool = getPool();
   await ensureOrdersTable();
+  await ensureCustomersTable();
   const res = await pool.query(
     `SELECT o.*, COALESCE(o.telefono, c.telefono) AS telefono
      FROM orders o

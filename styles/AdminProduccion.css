@@ -73,7 +73,7 @@
 
 .production-table th:nth-child(1),
 .production-table td:nth-child(1) {
-  text-align: left;
+  text-align: center;
 }
 
 .production-actions {
