@@ -1,12 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import "@/styles/dashboard.css";
-import "@/styles/tables.css";
-import "@/styles/cards.css";
-import "@/styles/AdminPedidos.css";
+import "@/app/globals.css";
 
-type Item = { sabor: string; units: number; unit_price: number };
+type Item = {
+  sabor: string;
+  units: number;
+  unit_price: number;
+  descripcion?: string;
+};
+type CajaSaborItem = { sabor: string; cantidad: number };
+type CajaEspecialData = {
+  nombre: string;
+  sabores: CajaSaborItem[];
+};
+
 type Order = {
   id: number;
   client_name: string;
@@ -57,16 +65,29 @@ export default function PedidosPage() {
     "Añadir caja",
   );
   const [cajaEspecialUnits, setCajaEspecialUnits] = useState<number>(0);
+  const [showCajaEspecialForm, setShowCajaEspecialForm] = useState(false);
+  const [cajaEspecialSabores, setCajaEspecialSabores] = useState<
+    CajaSaborItem[]
+  >([]);
+  const [cajaEspecialSaborSeleccionado, setCajaEspecialSaborSeleccionado] =
+    useState("");
+  const [cajaEspecialCantidadSabor, setCajaEspecialCantidadSabor] =
+    useState<number>(0);
 
   async function fetchProductionData() {
     try {
       const res = await fetch("/api/production");
+      if (!res.ok) {
+        console.error("API error:", res.status, res.statusText);
+        setProduction([]);
+        return [];
+      }
       const data = await res.json();
-      const prod = data || [];
+      const prod = Array.isArray(data) ? data : [];
       setProduction(prod);
       return prod;
     } catch (e) {
-      console.error(e);
+      console.error("Error fetching production:", e);
       setProduction([]);
       return [];
     }
@@ -74,10 +95,7 @@ export default function PedidosPage() {
 
   useEffect(() => {
     fetchData();
-    fetchProductionData().then((prod) => {
-      const firstAvailable = prod.find((p: any) => Number(p.disponibles) > 0);
-      if (firstAvailable) setSelectedSabor(firstAvailable.sabor);
-    });
+    fetchProductionData();
   }, []);
 
   async function fetchData() {
@@ -105,6 +123,103 @@ export default function PedidosPage() {
     );
   }
 
+  function handleCajaEspecialSelected() {
+    if (selectedCajaEspecial !== "Añadir caja") {
+      setShowCajaEspecialForm(true);
+      setCajaEspecialSabores([]);
+      setCajaEspecialSaborSeleccionado("");
+      setCajaEspecialCantidadSabor(0);
+    } else {
+      setShowCajaEspecialForm(false);
+    }
+  }
+
+  function totalSaboresEnCaja() {
+    return cajaEspecialSabores.reduce((s, sabor) => s + sabor.cantidad, 0);
+  }
+
+  function handleAddSaborACaja() {
+    if (!cajaEspecialSaborSeleccionado) {
+      alert("Selecciona un sabor");
+      return;
+    }
+    if (cajaEspecialCantidadSabor <= 0) {
+      alert("La cantidad debe ser mayor a 0");
+      return;
+    }
+    if (totalSaboresEnCaja() + cajaEspecialCantidadSabor > 6) {
+      alert(
+        `Solo puedes agregar ${6 - totalSaboresEnCaja()} donas más a esta caja`,
+      );
+      return;
+    }
+
+    const existingIndex = cajaEspecialSabores.findIndex(
+      (s) => s.sabor === cajaEspecialSaborSeleccionado,
+    );
+    const updatedSabores = [...cajaEspecialSabores];
+
+    if (existingIndex > -1) {
+      updatedSabores[existingIndex].cantidad += cajaEspecialCantidadSabor;
+    } else {
+      updatedSabores.push({
+        sabor: cajaEspecialSaborSeleccionado,
+        cantidad: cajaEspecialCantidadSabor,
+      });
+    }
+
+    setCajaEspecialSabores(updatedSabores);
+    setCajaEspecialSaborSeleccionado("");
+    setCajaEspecialCantidadSabor(0);
+  }
+
+  function handleRemoveSaborDeCaja(sabor: string) {
+    setCajaEspecialSabores(
+      cajaEspecialSabores.filter((s) => s.sabor !== sabor),
+    );
+  }
+
+  function handleConfirmCajaEspecial() {
+    if (totalSaboresEnCaja() !== 6) {
+      alert(
+        `Debes seleccionar exactamente 6 donas. Tienes ${totalSaboresEnCaja()}`,
+      );
+      return;
+    }
+
+    const nombreCaja = selectedCajaEspecial;
+    const detallesCaja = cajaEspecialSabores
+      .map((s) => `${s.sabor}(${s.cantidad})`)
+      .join(", ");
+
+    const existingIndex = items.findIndex((i) =>
+      i.sabor.startsWith(nombreCaja),
+    );
+    const updatedItems = [...items];
+    const boxItem = {
+      sabor: nombreCaja,
+      descripcion: detallesCaja,
+      units: cajaEspecialUnits,
+      unit_price: 30,
+    };
+
+    if (existingIndex > -1) {
+      updatedItems[existingIndex] = boxItem;
+    } else {
+      updatedItems.push(boxItem);
+    }
+
+    setItems(updatedItems);
+    setCajaEspecialUnits(0);
+    setSelectedCajaEspecial("Añadir caja");
+    setShowCajaEspecialForm(false);
+    setCajaEspecialSabores([]);
+
+    setImmediateDelivery(false);
+    setHideImmediateCheckboxOnConflict(true);
+    setErrorMensaje("");
+  }
+
   function openNew() {
     setEditing(null);
     setClientName("");
@@ -114,11 +229,12 @@ export default function PedidosPage() {
     setHideImmediateCheckboxOnConflict(false);
     setSelectedCajaEspecial("Añadir caja");
     setCajaEspecialUnits(0);
+    setShowCajaEspecialForm(false);
+    setCajaEspecialSabores([]);
+    setCajaEspecialSaborSeleccionado("");
+    setCajaEspecialCantidadSabor(0);
     setItems([]);
-    if (production.length > 0) {
-      const firstAvailable = production.find((p) => Number(p.disponibles) > 0);
-      if (firstAvailable) setSelectedSabor(firstAvailable.sabor);
-    }
+    setSelectedSabor("");
     setSelectedUnits(0);
     setErrorMensaje("");
     setShowModal(true);
@@ -152,17 +268,21 @@ export default function PedidosPage() {
     setHideImmediateCheckboxOnConflict(false);
     setSelectedCajaEspecial("Añadir caja");
     setCajaEspecialUnits(0);
-    if (production.length > 0) {
-      const firstAvailable =
-        production.find((p) => Number(p.disponibles) > 0) || production[0];
-      if (firstAvailable) setSelectedSabor(firstAvailable.sabor);
-    }
+    setShowCajaEspecialForm(false);
+    setCajaEspecialSabores([]);
+    setCajaEspecialSaborSeleccionado("");
+    setCajaEspecialCantidadSabor(0);
+    setSelectedSabor("");
     setSelectedUnits(0);
     setErrorMensaje("");
     setShowModal(true);
   }
 
   function handleAddSabor() {
+    if (!selectedSabor) {
+      alert("Por favor selecciona un sabor");
+      return;
+    }
     if (selectedUnits <= 0) {
       alert("Por favor ingrese una cantidad mayor a 0");
       return;
@@ -372,9 +492,9 @@ export default function PedidosPage() {
       : Number(currentSelectedProd.producidas)
     : 0;
   const specialCajaNames = specialCajaOptions.slice(1);
-  const hasSpecialCaja = items.some((item) =>
-    specialCajaNames.includes(item.sabor),
-  );
+  const isSpecialCaja = (sabor: string) =>
+    specialCajaNames.some((name) => sabor.startsWith(name));
+  const hasSpecialCaja = items.some((item) => isSpecialCaja(item.sabor));
   const hideImmediateCheckbox =
     hideImmediateCheckboxOnConflict && hasSpecialCaja;
   const currentPrice = currentSelectedProd
@@ -409,8 +529,17 @@ export default function PedidosPage() {
     ? "Elegir Fecha de entrega superior"
     : "";
 
+  useEffect(() => {
+    if (hasSpecialCaja) {
+      setImmediateDelivery(false);
+      setHideImmediateCheckboxOnConflict(true);
+    } else {
+      setHideImmediateCheckboxOnConflict(false);
+    }
+  }, [hasSpecialCaja]);
+
   return (
-    <div className="panel_ventas">
+    <div className="panel_card">
       <header className="encabezado_panel">
         <div className="encabezado_contenido">
           <h1>Gestión de Pedidos</h1>
@@ -678,17 +807,12 @@ export default function PedidosPage() {
                   />
                 </div>
               </div>
-              {!hideImmediateCheckbox && (
+              {!hideImmediateCheckbox && selectedCajaEspecial === "Añadir caja" && (
                 <div className="contenedor_checkbox_inmediata">
-                  <label
-                    className={`checkbox_label ${
-                      hasSpecialCaja ? "checkbox_label_disabled" : ""
-                    }`}
-                  >
+                  <label className="checkbox_label">
                     <input
                       type="checkbox"
                       checked={immediateDelivery}
-                      disabled={hasSpecialCaja}
                       className="entrada_checkbox"
                       onChange={(e) => {
                         setImmediateDelivery(e.target.checked);
@@ -736,6 +860,7 @@ export default function PedidosPage() {
                     }}
                     className="selector_sabor"
                   >
+                    <option value="">-- Seleccionar sabor --</option>
                     {production.map((p) => {
                       const shown =
                         Number(p.disponibles) > 0
@@ -761,15 +886,25 @@ export default function PedidosPage() {
                     min={0}
                     max={currentAvailable}
                     value={selectedUnits}
+                    disabled={!selectedSabor}
                     onChange={(e) => setSelectedUnits(Number(e.target.value))}
                     className="entrada_cantidad"
+                    style={{
+                      opacity: selectedSabor ? 1 : 0.5,
+                      cursor: selectedSabor ? "auto" : "not-allowed",
+                    }}
                   />
                 </div>
 
                 <button
                   type="button"
                   onClick={handleAddSabor}
+                  disabled={!selectedSabor}
                   className="boton_agregar"
+                  style={{
+                    opacity: selectedSabor ? 1 : 0.5,
+                    cursor: selectedSabor ? "pointer" : "not-allowed",
+                  }}
                 >
                   Agregar
                 </button>
@@ -795,6 +930,10 @@ export default function PedidosPage() {
                       onChange={(e) => {
                         setSelectedCajaEspecial(e.target.value);
                         setCajaEspecialUnits(0);
+                        setShowCajaEspecialForm(e.target.value !== "Añadir caja");
+                        if (e.target.value === "Añadir caja") {
+                          setCajaEspecialSabores([]);
+                        }
                       }}
                       className="selector_caja_especial"
                     >
@@ -808,7 +947,7 @@ export default function PedidosPage() {
 
                   <div>
                     <label className="etiqueta_formulario">
-                      Cantidad
+                      Cantidad de Cajas
                     </label>
                     <input
                       type="number"
@@ -821,18 +960,154 @@ export default function PedidosPage() {
                       className="entrada_caja_numero"
                     />
                   </div>
-
-                  <button
-                    type="button"
-                    onClick={handleAddCajaEspecial}
-                    className="boton_agregar_caja"
-                  >
-                    Agregar caja
-                  </button>
                 </div>
                 <p className="descripcion_caja">
-                  6 unidades, precio de caja 30bs
+                  Cada caja contiene 6 donas personalizables, precio de caja Bs 30
                 </p>
+
+                {showCajaEspecialForm && selectedCajaEspecial !== "Añadir caja" && (
+                  <div
+                    className="formulario_sabores_caja"
+                    style={{
+                      marginTop: "20px",
+                      padding: "15px",
+                      border: "1px solid #ddd",
+                      borderRadius: "8px",
+                      backgroundColor: "#f9f9f9",
+                    }}
+                  >
+                    <h4 style={{ marginTop: 0, marginBottom: "15px" }}>
+                      Selecciona 6 Donas para {selectedCajaEspecial}
+                    </h4>
+
+                    <div className="grid_seleccion" style={{ marginBottom: "15px" }}>
+                      <div>
+                        <label className="etiqueta_formulario">Sabor</label>
+                        <select
+                          value={cajaEspecialSaborSeleccionado}
+                          onChange={(e) =>
+                            setCajaEspecialSaborSeleccionado(e.target.value)
+                          }
+                          className="selector_sabor"
+                        >
+                          <option value="">-- Selecciona un sabor --</option>
+                          {production.map((p) => (
+                            <option key={p.sabor} value={p.sabor}>
+                              {p.sabor}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="etiqueta_formulario">Cantidad</label>
+                        <input
+                          type="number"
+                          min={0}
+                          max={6 - totalSaboresEnCaja()}
+                          value={cajaEspecialCantidadSabor}
+                          onChange={(e) =>
+                            setCajaEspecialCantidadSabor(Number(e.target.value))
+                          }
+                          className="entrada_cantidad"
+                          placeholder="0"
+                        />
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={handleAddSaborACaja}
+                        className="boton_agregar"
+                      >
+                        Agregar
+                      </button>
+                    </div>
+
+                    <div
+                      style={{
+                        marginBottom: "15px",
+                        padding: "10px",
+                        backgroundColor: "#fff",
+                        borderRadius: "6px",
+                        border: "1px solid #e0e0e0",
+                      }}
+                    >
+                      <strong>
+                        Donas seleccionadas: {totalSaboresEnCaja()}/6
+                      </strong>
+                      {cajaEspecialSabores.length > 0 && (
+                        <table
+                          style={{
+                            width: "100%",
+                            marginTop: "10px",
+                            borderCollapse: "collapse",
+                          }}
+                        >
+                          <thead>
+                            <tr style={{ borderBottom: "1px solid #ddd" }}>
+                              <th style={{ textAlign: "left", padding: "5px" }}>
+                                Sabor
+                              </th>
+                              <th style={{ textAlign: "center", padding: "5px" }}>
+                                Cant.
+                              </th>
+                              <th style={{ textAlign: "center", padding: "5px" }}>
+                                Quitar
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {cajaEspecialSabores.map((s) => (
+                              <tr
+                                key={s.sabor}
+                                style={{ borderBottom: "1px solid #eee" }}
+                              >
+                                <td style={{ padding: "5px" }}>{s.sabor}</td>
+                                <td
+                                  style={{
+                                    textAlign: "center",
+                                    padding: "5px",
+                                  }}
+                                >
+                                  {s.cantidad}
+                                </td>
+                                <td style={{ textAlign: "center", padding: "5px" }}>
+                                  <button
+                                    type="button"
+                                    onClick={() => handleRemoveSaborDeCaja(s.sabor)}
+                                    className="boton_quitar"
+                                    style={{ padding: "4px 8px" }}
+                                  >
+                                    ✕
+                                  </button>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      )}
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={handleConfirmCajaEspecial}
+                      disabled={totalSaboresEnCaja() !== 6 || cajaEspecialUnits <= 0}
+                      className="boton_agregar_caja"
+                      style={{
+                        backgroundColor:
+                          totalSaboresEnCaja() === 6 && cajaEspecialUnits > 0
+                            ? "#27ae60"
+                            : "#999",
+                        cursor:
+                          totalSaboresEnCaja() === 6 && cajaEspecialUnits > 0
+                            ? "pointer"
+                            : "not-allowed",
+                      }}
+                    >
+                      ✓ Confirmar Caja Especial
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -857,7 +1132,9 @@ export default function PedidosPage() {
                   ) : (
                     items.map((it) => (
                       <tr key={it.sabor}>
-                        <td className="celda_sabor">{it.sabor}</td>
+                        <td className="celda_sabor">
+                      {it.descripcion ? `${it.sabor} [${it.descripcion}]` : it.sabor}
+                    </td>
                         <td className="celda_cantidad">{it.units}</td>
                         <td className="celda_precio">
                           Bs {formatMoney(it.unit_price)}

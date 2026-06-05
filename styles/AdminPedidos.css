@@ -12,10 +12,6 @@
 
 
 
-.encabezado_contenido p {
-  color: #7f8c8d;
-  margin: 5px 0 0 0;
-}
 
 .boton_crear_pedido {
   display: inline-flex;

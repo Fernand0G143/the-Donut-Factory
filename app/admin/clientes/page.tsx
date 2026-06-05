@@ -46,11 +46,11 @@ export default function CustomersPage() {
   }
 
   return (
-    <div className="panel_ventas">
+    <div className="panel_card">
       <header className="encabezado_panel">
         <div className="encabezado_contenido">
           <h1>Gestión de Clientes</h1>
-          <p className="panel-subtitle">
+          <p>
             Historial, preferencias y seguimiento comercial
           </p>
         </div>

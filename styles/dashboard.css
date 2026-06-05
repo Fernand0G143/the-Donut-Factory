@@ -96,12 +96,6 @@ table td {
   margin-bottom: 15px;
 }
 
-.production-card {
-  background: linear-gradient(180deg, rgba(238, 242, 255, 0.95), white);
-  border-radius: 24px;
-  padding: 32px;
-  box-shadow: 0 20px 50px rgba(99, 102, 241, 0.12);
-}
 
 .production-header {
   text-align: center;
@@ -114,13 +108,7 @@ table td {
   color: #1e3a8a;
 }
 
-.panel-subtitle {
-  margin: 12px auto 0;
-  max-width: 680px;
-  color: #475569;
-  font-size: 1rem;
-  line-height: 1.6;
-}
+
 
 .production-table-wrapper {
   overflow-x: auto;

@@ -100,7 +100,7 @@ export default function VentasPage() {
     .reduce((sum, v) => sum + v.cantidad, 0);
 
   return (
-    <div className="panel_ventas">
+    <div className="panel_card">
       <header className="encabezado_panel">
         <div className="encabezado_contenido">
           <h1>Panel de Ventas</h1>

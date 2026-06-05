@@ -8,8 +8,7 @@
 }
 
 .modo_oscuro body,
-.modo_oscuro .panel_principal,
-.modo_oscuro .panel_ventas {
+.modo_oscuro .panel_principal {
   background: var(--bg) !important;
   color: var(--text) !important;
 }
@@ -284,7 +283,7 @@
   color: var(--text) !important;
 }
 
-.modo_oscuro .panel_ventas,
+.modo_oscuro .panel_card,
 .modo_oscuro .encabezado_ventas,
 .modo_oscuro .contenedor_resumen_ventas,
 .modo_oscuro .tarjeta_estadistica_ventas,
@@ -307,8 +306,8 @@
 .modo_oscuro .tarjeta_etiqueta_ventas,
 .modo_oscuro .tarjeta_numero_ventas,
 .modo_oscuro .titulo_tabla_ventas,
-.modo_oscuro .encabezado_contenido_ventas h1,
-.modo_oscuro .encabezado_contenido_ventas p,
+.modo_oscuro .encabezado_contenido h1,
+.modo_oscuro .encabezado_contenido p,
 .modo_oscuro .texto_cargando_ventas,
 .modo_oscuro .texto_no_encontrado_ventas {
   color: var(--text) !important;

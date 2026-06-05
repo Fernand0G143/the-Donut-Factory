@@ -59,6 +59,13 @@
   font-weight: 500;
 }
 
+.panel_card {
+  margin-left: 5px;
+  width: 100%;
+  margin-top: -5px;
+}
+
+
 .encabezado_panel {
   display: flex;
   justify-content: space-between;
@@ -82,4 +89,11 @@
   margin: 0;
   font-size: 20px;
   font-weight: 500;
+}
+
+
+.encabezado_contenido p {
+  color: #8d8c7f;
+  margin: 5px 0 0 0;
+  font-weight: 400;
 }

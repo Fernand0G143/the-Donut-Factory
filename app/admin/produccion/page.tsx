@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import "@/styles/dashboard.css";
-import "@/styles/tables.css";
-import "@/styles/cards.css";
-import "@/styles/AdminProduccion.css";
+
+import "@/app/globals.css";
 
 type Production = {
   sabor: string;
@@ -124,13 +122,13 @@ export default function ProductionPage() {
       setErrorMensaje((error as Error).message || "Error al eliminar sabor.");
     }
   }
-
+  
   return (
-    <div className="table-card production-card">
+    <div className="panel">
       <header className="encabezado_panel">
         <div className="encabezado_contenido">
           <h1>Producción por sabor de donas</h1>
-          <p className="panel-subtitle">
+          <p >
             Cantidad producida, disponibles y vendidas por sabor, con precio de venta.
           </p>
         </div>

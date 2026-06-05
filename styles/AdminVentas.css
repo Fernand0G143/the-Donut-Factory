@@ -1,26 +1,3 @@
-/* ============================================================================
-   ESTILOS DE PANEL DE VENTAS
-   Todos los estilos con clases CSS en español
-   ============================================================================ */
-
-/* Contenedor principal del panel de ventas */
-.panel_ventas {
-  padding: 20px;
-  width: 100%;
-  max-width: none;
-  margin: 0 auto;
-}
-
-
-
-.encabezado_contenido_ventas p {
-  color: #7f8c8d;
-  margin: 5px 0 0 0;
-}
-
-/* ============================================================================
-   RESUMEN DE ACTIVIDAD / CARDS DE ESTADÍSTICAS
-   ============================================================================ */
 
 .contenedor_resumen_ventas {
   display: grid;
