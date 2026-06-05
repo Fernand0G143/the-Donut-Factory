@@ -70,24 +70,89 @@ cd the-Donut-Factory
 npm install
 ```
 
-3. Crear el archivo de entorno `.env` con la cadena de conexión a PostgreSQL:
+> Si al ejecutar `npm run dev` o `npm run build` aparece el error `Module not found: Can't resolve 'pg'`, vuelve a correr:
+>
+> ```bash
+> npm install
+> ```
+>
+> y si aún persiste:
+>
+> ```bash
+> npm install pg
+> ```
+>
+3. Copiar el ejemplo de entorno y personalizarlo si es necesario:
 
-```dotenv
-DATABASE_URL="postgresql://usuario:password@localhost:5432/nombre_base"
+```bash
+copy .env.example .env
 ```
 
-> En este repositorio se usa `DATABASE_URL` para conectar con PostgreSQL.
+> El archivo `.env.example` incluye los valores de `POSTGRES_USER`, `POSTGRES_PASSWORD` y `POSTGRES_DB` usados por PostgreSQL.
 
-4. Levantar la aplicación en modo desarrollo:
+4. Iniciar Docker Compose:
+
+```bash
+docker compose up -d
+```
+
+El servicio `db` crea un contenedor llamado `donut_factory_container`.
+
+5. Verificar que el contenedor esté en ejecución:
+
+```bash
+docker ps --filter "name=donut_factory_container"
+```
+
+6. Comprobar los logs de PostgreSQL:
+
+```bash
+docker compose logs -f db
+```
+
+> Para detener los servicios cuando termines, usa:
+
+```bash
+docker compose down
+```
+
+7. Levantar la aplicación en modo desarrollo:
 
 ```bash
 npm run dev
 ```
 
-5. Abrir la app en el navegador:
+8. Abrir la app en el navegador:
 
 ```text
 http://localhost:3000
+```
+
+---
+
+## 🗄️ Base de datos y tablas
+
+El contenedor PostgreSQL arranca con el nombre `donut_factory_container` y utiliza la base de datos `donuts_db`.
+
+Las tablas creadas para el proyecto son:
+
+- `clientes`
+- `pedidos`
+- `produccion`
+- `ventas`
+
+Si necesitas crear la base de datos y las tablas manualmente, usa estos comandos:
+
+```bash
+docker exec -i donut_factory_container psql -U donuts -d postgres -c "CREATE DATABASE donuts_db;"
+
+docker exec -i donut_factory_container psql -U donuts -d donuts_db -c "CREATE TABLE IF NOT EXISTS clientes (id SERIAL PRIMARY KEY, nombre TEXT NOT NULL, correo TEXT UNIQUE, telefono TEXT, creado_en TIMESTAMPTZ DEFAULT now()); CREATE TABLE IF NOT EXISTS pedidos (id SERIAL PRIMARY KEY, cliente_id INTEGER REFERENCES clientes(id) ON DELETE SET NULL, estado TEXT NOT NULL DEFAULT 'pendiente', total NUMERIC(10,2) DEFAULT 0, creado_en TIMESTAMPTZ DEFAULT now()); CREATE TABLE IF NOT EXISTS produccion (id SERIAL PRIMARY KEY, sabor TEXT NOT NULL, stock INTEGER DEFAULT 0, precio NUMERIC(7,2) DEFAULT 0, actualizado_en TIMESTAMPTZ DEFAULT now()); CREATE TABLE IF NOT EXISTS ventas (id SERIAL PRIMARY KEY, pedido_id INTEGER REFERENCES pedidos(id) ON DELETE CASCADE, monto NUMERIC(10,2) NOT NULL, vendido_en TIMESTAMPTZ DEFAULT now()); CREATE INDEX IF NOT EXISTS idx_pedidos_cliente ON pedidos(cliente_id);"
+```
+
+Y para verificar que las tablas existen:
+
+```bash
+docker exec -i donut_factory_container psql -U donuts -d donuts_db -c "\dt"
 ```
 
 ---

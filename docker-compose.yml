@@ -1,12 +1,12 @@
-version: '3.8'
 services:
   db:
+    container_name: donut_factory_container
     image: postgres:15
     restart: always
     environment:
-      POSTGRES_USER: donuts
-      POSTGRES_PASSWORD: donuts_pass
-      POSTGRES_DB: donuts_db
+      POSTGRES_USER: ${POSTGRES_USER:-donuts}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-donuts_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-donuts_db}
     ports:
       - "5432:5432"
     volumes:
