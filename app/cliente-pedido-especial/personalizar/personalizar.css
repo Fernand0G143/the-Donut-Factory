@@ -1,0 +1,21 @@
+.personalizar-page {
+  min-height: 100vh;
+  background: #f8f4f1;
+  padding-bottom: 120px;
+}
+.section {
+  padding: 24px;
+}
+.section h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #2f2020;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.bottom-space {
+  padding: 24px;
+}

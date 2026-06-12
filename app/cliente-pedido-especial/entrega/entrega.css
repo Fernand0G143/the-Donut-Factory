@@ -1,0 +1,14 @@
+.entrega-page {
+  min-height: 100vh;
+  background: #f8f4f1;
+  padding-bottom: 120px;
+}
+
+.section {
+  padding: 24px;
+  color: #2f2020;
+}
+
+.bottom-space {
+  padding: 24px;
+}

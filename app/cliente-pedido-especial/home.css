@@ -1,0 +1,55 @@
+.home-page {
+  min-height: 100vh;
+  background: #f8f4f1;
+  padding-bottom: 120px;
+}
+
+.hero-section {
+  padding: 24px;
+}
+
+.hero-card {
+  background: linear-gradient(135deg, #1f0829, #542266);
+  border-radius: 30px;
+  padding: 28px;
+  color: white;
+  overflow: hidden;
+}
+
+.hero-text span {
+  color: #d9b9ff;
+  font-size: 16px;
+}
+
+.hero-text h1 {
+  font-size: 28px;
+  line-height: 1.1;
+  margin: 16px 0;
+}
+
+.hero-text p {
+  color: #d9d9d9;
+  margin-bottom: 28px;
+}
+
+.hero-card img {
+  width: 100%;
+  border-radius: 28px;
+  margin-top: 24px;
+}
+
+.home-products {
+  padding: 0 24px;
+}
+
+.home-products h2 {
+  font-size: 22px;
+  margin-bottom: 24px;
+  color: #1f0829;
+}
+
+.donut-list {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+}

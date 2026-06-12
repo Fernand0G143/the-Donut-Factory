@@ -1,0 +1,41 @@
+.donut-card {
+  width: 180px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s ease;
+}
+
+.donut-card:hover {
+  transform: translateY(-6px);
+}
+
+.donut-image-wrapper {
+  position: relative;
+  height: 120px;
+  background: #f8f4f1;
+}
+
+.donut-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.donut-content {
+  padding: 18px;
+}
+.donut-content h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #3d2b2b;
+  margin-bottom: 8px;
+}
+
+.donut-content p {
+  color: #9b5cff;
+  font-size: 16px;
+  font-weight: 700;
+}
